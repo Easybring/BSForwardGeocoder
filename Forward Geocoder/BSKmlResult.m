@@ -74,6 +74,11 @@
 	return region;
 }
 
+-(CLLocation*)location
+{
+  return [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
+}
+
 - (NSArray*)findAddressComponent:(NSString*)typeName
 {
 	NSMutableArray *matchingComponents = [[NSMutableArray alloc] init];

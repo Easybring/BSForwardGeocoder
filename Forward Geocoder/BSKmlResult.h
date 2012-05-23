@@ -36,5 +36,6 @@
 @property (readonly) MKCoordinateRegion coordinateRegion;
 
 - (NSArray*)findAddressComponent:(NSString*)typeName;
+-(CLLocation*)location;
 
 @end
