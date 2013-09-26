@@ -23,6 +23,8 @@
 @property (nonatomic, copy) EBForwardPlacesDetailSuccess detailSuccessBlock;
 @property (nonatomic, copy) EBForwardPlacesDetailFailed detailFailureBlock;
 
+@property (nonatomic, copy) NSString *apiKey;
+
 @end
 
 @implementation EBForwardPlacesGeocoder
@@ -37,7 +39,29 @@
 @synthesize detailFailureBlock = _detailFailureBlock;
 @synthesize detailSuccessBlock = _detailSuccessBlock;
 
+- (id)init
+{
+  self = nil;
+  @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"init not supported, use initWithAPIKey instead." userInfo:nil];
+}
 
+- (instancetype)initWithAPIKey:(NSString *)apiKey
+{
+  if(!apiKey.length)
+  {
+    self = nil;
+    @throw NSInvalidArgumentException;
+  }
+	
+  self = [super init];
+	
+  if(self)
+  {
+    self.apiKey = apiKey;
+  }
+	
+	return self;
+}
 
 // Use Core Foundation method to URL-encode strings, since -stringByAddingPercentEscapesUsingEncoding:
 // doesn't do a complete job. For details, see:
@@ -55,7 +79,7 @@
 
 #pragma mark Detail methods
 
--(void)getDetailForPlaceRef:(NSString*)ref
+-(void)getDetailForPlaceRef:(NSString*)ref language:(NSString *)language
 {
   if (self.detailConnection) {
     [self.detailConnection cancel];
@@ -63,8 +87,10 @@
   
   // Create the url object for our request. It's important to escape the 
   // search string to support spaces and international characters
-  
-  NSString *detailUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/details/xml?reference=%@&sensor=false&language=no&key=AIzaSyC3ptijPpS788i8TMLHpCOQm6pbTO0K30w", self.useHTTP ? @"http" : @"https", ref];
+	
+  NSString *langOrNothing = language ? [NSString stringWithFormat:@"&language=%@", language] : @"";
+	
+  NSString *detailUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/details/xml?reference=%@&sensor=false%@&key=%@", self.useHTTP ? @"http" : @"https", ref, langOrNothing, sefl.apiKey];
   
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:detailUrl] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
   self.detailConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -76,8 +102,6 @@
   self.detailFailureBlock = failure;
   [self getDetailForPlaceRef:ref];
 }
-
-
 
 - (void)parseDetailResponseWithData:(NSData *)responseData
 {
@@ -97,8 +121,12 @@
   parser = nil;
 }
 
-
 - (void)forwardGeocodeWithQuery:(NSString *)searchQuery inCountry:(NSString *)country
+{
+	[self forwardGeocodeWithQuery:searchQuery language:nil inCountry:country];
+}
+
+- (void)forwardGeocodeWithQuery:(NSString *)searchQuery language:(NSString *)language inCountry:(NSString *)country
 {
   if (self.geocodeConnection) {
     [self.geocodeConnection cancel];
@@ -107,11 +135,11 @@
   // Create the url object for our request. It's important to escape the 
   // search string to support spaces and international characters
   
-  NSString *geocodeUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/autocomplete/xml?input=%@&types=establishment&language=no&sensor=false&key=AIzaSyC3ptijPpS788i8TMLHpCOQm6pbTO0K30w", self.useHTTP ? @"http" : @"https", [self URLEncodedString:searchQuery]];
-  
-  if (country && ![country isEqualToString:@""]) {
-    geocodeUrl = [geocodeUrl stringByAppendingFormat:@"&components=country:%@", country];
-  }
+  NSString *langOrNothing = language.length ? [NSString stringWithFormat:@"&language=%@", language] : @"";
+	
+  NSString *countryOrNothing = country.length ? [NSString stringWithFormat:@"&components=country:%@", country] : @"";
+	
+  NSString *geocodeUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/autocomplete/xml?input=%@&types=establishment&sensor=false%@%@&key=%@", self.useHTTP ? @"http" : @"https", [self URLEncodedString:searchQuery], countryOrNothing, langOrNothing, self.apiKey];
   
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:geocodeUrl] cachePolicy:NSURLCacheStorageAllowed timeoutInterval:10.0];
   self.geocodeConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -119,9 +147,14 @@
 
 - (void)forwardGeocodeWithQuery:(NSString *)location inCountry:(NSString *)country success:(EBForwardPlacesGeocoderSuccess)success failure:(EBForwardPlacesGeocoderFailed)failure
 {
+	[self forwardGeocodeWithQuery:location language:nil inCountry:country success:success failure:failure];
+}
+
+- (void)forwardGeocodeWithQuery:(NSString *)location language:(NSString *)language inCountry:(NSString *)country success:(EBForwardPlacesGeocoderSuccess)success failure:(EBForwardPlacesGeocoderFailed)failure
+{
   self.successBlock = success;
   self.failureBlock = failure;
-  [self forwardGeocodeWithQuery:location inCountry:country];
+	[self forwardGeocodeWithQuery:location language:language inCountry:country];
 }
 
 - (void)parseGeocodeResponseWithData:(NSData *)responseData

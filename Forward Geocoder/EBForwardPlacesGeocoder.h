@@ -26,11 +26,23 @@ typedef void (^EBForwardPlacesDetailFailed) (int status, NSString* errorMessage)
 
 @interface EBForwardPlacesGeocoder : NSObject <NSURLConnectionDataDelegate>
 
+@property (nonatomic, assign) BOOL useHTTP;
+
+/**
+ *	Initializes an allocated EBForwardPlacesGeocoder with an APIKey. NOTE: init is no longer supported and will throw an exception.
+ *
+ *	@param apiKey	The API key provided by Google. This may not be nil or empty.
+ *
+ *	@return Initialized EBForwardPlacesGeocoder object with the specified API key.
+ */
+- (instancetype)initWithAPIKey:(NSString *)apiKey;
+
 - (void)forwardGeocodeWithQuery:(NSString *)location inCountry:(NSString *)country success:(EBForwardPlacesGeocoderSuccess)success failure:(EBForwardPlacesGeocoderFailed)failure;
+
+- (void)forwardGeocodeWithQuery:(NSString *)location language:(NSString *)language inCountry:(NSString *)country success:(EBForwardPlacesGeocoderSuccess)success failure:(EBForwardPlacesGeocoderFailed)failure;
 
 - (void)getDetailForPlaceRef:(NSString *)ref success:(EBForwardPlacesDetailSuccess)success failure:(EBForwardPlacesDetailFailed)failure;
 
-
-@property (nonatomic, assign) BOOL useHTTP;
+- (void)getDetailForPlaceRef:(NSString *)ref language:(NSString *)language success:(EBForwardPlacesDetailSuccess)success failure:(EBForwardPlacesDetailFailed)failure;
 
 @end
