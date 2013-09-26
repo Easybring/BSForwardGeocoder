@@ -79,7 +79,14 @@
 
 #pragma mark Detail methods
 
--(void)getDetailForPlaceRef:(NSString*)ref language:(NSString *)language
+- (void)getDetailForPlaceRef:(NSString *)ref success:(EBForwardPlacesDetailSuccess)success failure:(EBForwardPlacesDetailFailed)failure
+{
+  self.detailSuccessBlock = success;
+  self.detailFailureBlock = failure;
+  [self getDetailForPlaceRef:ref language:nil success:success failure:failure];
+}
+
+- (void)getDetailForPlaceRef:(NSString *)ref language:(NSString *)language success:(EBForwardPlacesDetailSuccess)success failure:(EBForwardPlacesDetailFailed)failure
 {
   if (self.detailConnection) {
     [self.detailConnection cancel];
@@ -90,17 +97,10 @@
 	
   NSString *langOrNothing = language ? [NSString stringWithFormat:@"&language=%@", language] : @"";
 	
-  NSString *detailUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/details/xml?reference=%@&sensor=false%@&key=%@", self.useHTTP ? @"http" : @"https", ref, langOrNothing, sefl.apiKey];
+  NSString *detailUrl = [NSString stringWithFormat:@"%@://maps.googleapis.com/maps/api/place/details/xml?reference=%@&sensor=false%@&key=%@", self.useHTTP ? @"http" : @"https", ref, langOrNothing, self.apiKey];
   
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:detailUrl] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10.0];
   self.detailConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
-
-- (void)getDetailForPlaceRef:(NSString *)ref success:(EBForwardPlacesDetailSuccess)success failure:(EBForwardPlacesDetailFailed)failure
-{
-  self.detailSuccessBlock = success;
-  self.detailFailureBlock = failure;
-  [self getDetailForPlaceRef:ref];
 }
 
 - (void)parseDetailResponseWithData:(NSData *)responseData

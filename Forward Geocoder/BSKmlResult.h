@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "BSAddressComponent.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface BSKmlResult : NSObject
 

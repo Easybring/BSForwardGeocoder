@@ -10,6 +10,12 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		94AD45B317F450FE00D5E85D /* EBKmlPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AD45B017F450FE00D5E85D /* EBKmlPlaceDetail.m */; };
+		94AD45B417F450FE00D5E85D /* EBKmlPlacePrediction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AD45B217F450FE00D5E85D /* EBKmlPlacePrediction.m */; };
+		94AD45B617F4511000D5E85D /* EBForwardPlacesGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AD45AE17F4509F00D5E85D /* EBForwardPlacesGeocoder.m */; };
+		94AD45B817F4512200D5E85D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AD45B717F4512200D5E85D /* CoreLocation.framework */; };
+		94AD45BD17F4517200D5E85D /* EBGoogleV3PlacesDetailParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AD45BA17F4517200D5E85D /* EBGoogleV3PlacesDetailParser.m */; };
+		94AD45BE17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AD45BC17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.m */; };
 		F4786646149387900060893E /* BSForwardGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F478663E149387900060893E /* BSForwardGeocoder.m */; };
 		F4786647149387900060893E /* BSAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F478663F149387900060893E /* BSAddressComponent.m */; };
 		F4786648149387900060893E /* BSKmlResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4786640149387900060893E /* BSKmlResult.m */; };
@@ -28,6 +34,17 @@
 		1D6058910D05DD3D006BFB54 /* Forward-Geocoding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Forward-Geocoding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		94AD45AD17F4509F00D5E85D /* EBForwardPlacesGeocoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EBForwardPlacesGeocoder.h; path = "Forward Geocoder/EBForwardPlacesGeocoder.h"; sourceTree = SOURCE_ROOT; };
+		94AD45AE17F4509F00D5E85D /* EBForwardPlacesGeocoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EBForwardPlacesGeocoder.m; path = "Forward Geocoder/EBForwardPlacesGeocoder.m"; sourceTree = SOURCE_ROOT; };
+		94AD45AF17F450FE00D5E85D /* EBKmlPlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBKmlPlaceDetail.h; path = "Forward Geocoder/EBKmlPlaceDetail.h"; sourceTree = SOURCE_ROOT; };
+		94AD45B017F450FE00D5E85D /* EBKmlPlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBKmlPlaceDetail.m; path = "Forward Geocoder/EBKmlPlaceDetail.m"; sourceTree = SOURCE_ROOT; };
+		94AD45B117F450FE00D5E85D /* EBKmlPlacePrediction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBKmlPlacePrediction.h; path = "Forward Geocoder/EBKmlPlacePrediction.h"; sourceTree = SOURCE_ROOT; };
+		94AD45B217F450FE00D5E85D /* EBKmlPlacePrediction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBKmlPlacePrediction.m; path = "Forward Geocoder/EBKmlPlacePrediction.m"; sourceTree = SOURCE_ROOT; };
+		94AD45B717F4512200D5E85D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		94AD45B917F4517200D5E85D /* EBGoogleV3PlacesDetailParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBGoogleV3PlacesDetailParser.h; path = "Forward Geocoder/EBGoogleV3PlacesDetailParser.h"; sourceTree = SOURCE_ROOT; };
+		94AD45BA17F4517200D5E85D /* EBGoogleV3PlacesDetailParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBGoogleV3PlacesDetailParser.m; path = "Forward Geocoder/EBGoogleV3PlacesDetailParser.m"; sourceTree = SOURCE_ROOT; };
+		94AD45BB17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBGoogleV3PlacesPredictionParser.h; path = "Forward Geocoder/EBGoogleV3PlacesPredictionParser.h"; sourceTree = SOURCE_ROOT; };
+		94AD45BC17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBGoogleV3PlacesPredictionParser.m; path = "Forward Geocoder/EBGoogleV3PlacesPredictionParser.m"; sourceTree = SOURCE_ROOT; };
 		F478663E149387900060893E /* BSForwardGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSForwardGeocoder.m; path = "Forward Geocoder/BSForwardGeocoder.m"; sourceTree = SOURCE_ROOT; };
 		F478663F149387900060893E /* BSAddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSAddressComponent.m; path = "Forward Geocoder/BSAddressComponent.m"; sourceTree = SOURCE_ROOT; };
 		F4786640149387900060893E /* BSKmlResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSKmlResult.m; path = "Forward Geocoder/BSKmlResult.m"; sourceTree = SOURCE_ROOT; };
@@ -55,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AD45B817F4512200D5E85D /* CoreLocation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -110,6 +128,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94AD45B717F4512200D5E85D /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -148,6 +167,16 @@
 				F478663E149387900060893E /* BSForwardGeocoder.m */,
 				F4786644149387900060893E /* BSGoogleV3KmlParser.h */,
 				F4786645149387900060893E /* BSGoogleV3KmlParser.m */,
+				94AD45AD17F4509F00D5E85D /* EBForwardPlacesGeocoder.h */,
+				94AD45AE17F4509F00D5E85D /* EBForwardPlacesGeocoder.m */,
+				94AD45B917F4517200D5E85D /* EBGoogleV3PlacesDetailParser.h */,
+				94AD45BA17F4517200D5E85D /* EBGoogleV3PlacesDetailParser.m */,
+				94AD45BB17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.h */,
+				94AD45BC17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.m */,
+				94AD45AF17F450FE00D5E85D /* EBKmlPlaceDetail.h */,
+				94AD45B017F450FE00D5E85D /* EBKmlPlaceDetail.m */,
+				94AD45B117F450FE00D5E85D /* EBKmlPlacePrediction.h */,
+				94AD45B217F450FE00D5E85D /* EBKmlPlacePrediction.m */,
 			);
 			name = "Forward Geocoding";
 			path = Classes;
@@ -226,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AD45B617F4511000D5E85D /* EBForwardPlacesGeocoder.m in Sources */,
 				F4786646149387900060893E /* BSForwardGeocoder.m in Sources */,
 				F4786647149387900060893E /* BSAddressComponent.m in Sources */,
 				F4786648149387900060893E /* BSKmlResult.m in Sources */,
@@ -234,6 +264,10 @@
 				F4786656149387EA0060893E /* main.m in Sources */,
 				F478665F149388290060893E /* Forward_GeocodingViewController.m in Sources */,
 				F4786660149388290060893E /* Forward_GeocodingAppDelegate.m in Sources */,
+				94AD45B317F450FE00D5E85D /* EBKmlPlaceDetail.m in Sources */,
+				94AD45B417F450FE00D5E85D /* EBKmlPlacePrediction.m in Sources */,
+				94AD45BD17F4517200D5E85D /* EBGoogleV3PlacesDetailParser.m in Sources */,
+				94AD45BE17F4517200D5E85D /* EBGoogleV3PlacesPredictionParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
